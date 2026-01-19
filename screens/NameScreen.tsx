@@ -5,6 +5,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import z from 'zod';
 import { EyeClosed, EyeIcon } from 'lucide-react-native';
+import { useUserOnboarding } from '../contexts/UserOnboardingContext';
 
 const signInSchema = z.object({
   firstName: z.string().min(2, "First Name is required!"),
@@ -17,6 +18,7 @@ type SignInFormData = z.infer<typeof signInSchema>;
 const NameScreen = () => {
   const navigation =useNavigation();
  const [showPassword, setShowPassword] = useState(false);
+ const{setFirstName,setLastName} =useUserOnboarding()
   const {
     control,
     handleSubmit,
@@ -24,13 +26,16 @@ const NameScreen = () => {
   } = useForm<SignInFormData>({
     resolver: zodResolver(signInSchema),
     defaultValues: {
-      firstName: "saurabh",
-      lastName: "singh",
+      firstName: "",
+      lastName: "",
     },
   });
 
    const onSubmit = (data: SignInFormData) => {
-    console.log("formData", data);
+      setFirstName(data?.firstName.trim());
+      if(data?.lastName){
+        setLastName(data?.lastName.trim())
+      }
     navigation.navigate("Image")
   };
 

@@ -74,7 +74,9 @@ const GameSelectionScreen = () => {
       prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id],
     );
   };
-
+  const handleDebut =()=>{
+    navigation.navigate("SignUp")
+  }
   const renderItem = ({ item }: any) => {
     const isSelected = localSelected.includes(item.id);
 
@@ -125,7 +127,7 @@ const GameSelectionScreen = () => {
       <View className="absolute bottom-6 left-6 right-6">
         <TouchableOpacity className={`py-4 rounded-xl ${localSelected.length > 0 ? "bg-green-600" :"bg-gray-300"}`}
         disabled={localSelected.length === 0}
-        // onPress={handleDebut}
+        onPress={handleDebut}
         >
           <Text className="text-white text-center font-semibold text-base" >
             {localSelected > 0 ? "Make my debut" : "select a Game"}

@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View ,SafeAreaView, ScrollView, Pressable, Image, TextInput } from 'react-native'
 import React, { useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
+import { useUserOnboarding } from '../contexts/UserOnboardingContext';
 
 interface ImageItem{
   id:String;
@@ -35,8 +36,8 @@ export const dummyAvatars = [
 
 const SelectImage = () => {
   const navigation=useNavigation()
-  const [image,setImage]=useState("")
-
+  // const [images,setImage]=useState("")
+   const {image,setImage}=useUserOnboarding();
 
   return (
    <SafeAreaView className='flex-1 bg-gray-100 px-6'>
