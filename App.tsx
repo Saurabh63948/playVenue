@@ -6,7 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import RootStackNavigator from './navigation/RootStckNavigator';
 import { ClerkProvider, ClerkLoaded } from '@clerk/clerk-expo';
 
- 
+ //saurabh
 
 
 export default function App() {
