@@ -9,11 +9,17 @@ import SignUpScreen from '../screens/SignUpScreen';
 import NameScreen from '../screens/NameScreen';
 import SelectImage from '../screens/SelectImage';
 import GameSelectionScreen from '../screens/GameSelectionScreen';
+import { useUser } from '@clerk/clerk-expo';
+import SplashScreen from '../screens/SplashScreen';
 
 const Stack = createNativeStackNavigator();
 
 const RootStackNavigator = () => {
-  const isSignedIn = false; // later replace with auth state
+ const { isLoaded, isSignedIn } = useUser();
+ if (!isLoaded) {
+  console.log("ye vali sceen bhi aayi ")
+    return <SplashScreen />;
+  }
 
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }} >
