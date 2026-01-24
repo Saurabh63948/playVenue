@@ -1,3 +1,4 @@
+import { SignedOut, useClerk } from "@clerk/clerk-expo";
 import { useNavigation } from "@react-navigation/native";
 import {
   ArrowBigRight,
@@ -13,6 +14,7 @@ import {
   Twitter,
   Users,
 } from "lucide-react-native";
+import React from "react";
 
 import {
   View,
@@ -57,9 +59,17 @@ export const spotligthData = [
 
 const HomeScreens = () => {
   const navigation = useNavigation();
+  const {signOut} =useClerk();
+  const handleSignOut =async()=>{
+   try {
+   const res=await signOut();
 
+   } catch (error) {
+    console.error("Sign out error",error)
+   }
+  }
   return (
-    <SafeAreaView className="flex-1 bg-white ">
+    <SafeAreaView className="flex-1 bg-white mt-8 ">
       <View className="px-4 py-3 bg-white flex-row justify-between items-center border-b border-gray-200">
         <View className="flex-1">
           <Text className="text-gray-400 text-xs">Location</Text>
@@ -68,7 +78,7 @@ const HomeScreens = () => {
         <View className="flex-row gap-4 items-center ml-2">
           <MessageCircle size={20} stroke="#333" />
           <Bell size={20} stroke="#333" />
-          <Pressable>
+          <Pressable onPress={handleSignOut} >
             <Image
               className="w-8 h-8 rounded-full"
               src={
@@ -216,7 +226,9 @@ const HomeScreens = () => {
 
         <View className="bg-[#f9fafb] rounded-2xl p-4 mb-6 flex-row items-center">
           <View className="bg-gray-100 p-3 rounded-full mr-3">
-            <Text><Gift size={22} color="#A855F7" strokeWidth={2} /></Text>
+            <Text>
+              <Gift size={22} color="#A855F7" strokeWidth={2} />
+            </Text>
           </View>
           <View className="flex-1">
             <Text className="font-semibold text-base">
@@ -229,36 +241,26 @@ const HomeScreens = () => {
           </View>
         </View>
 
-
-        <View className="items-center mb-10 mt-4" >
-          <Text className="text-2xl font-bold text-[#14b8a6] ">
-            PLAY_VENUE
+        <View className="items-center mb-10 mt-4">
+          <Text className="text-2xl font-bold text-[#14b8a6] ">PLAY_VENUE</Text>
+          <Text className="text-sm text-gray-500 mt-1">
+            Your Sports Community App{" "}
           </Text>
-          <Text className="text-sm text-gray-500 mt-1" >Your Sports Community App </Text>
           <View className="flex-row items-center gap-1 mt-2">
-            <TouchableOpacity >
+            <TouchableOpacity>
               <Text className="text-sm text-blue underline">
-                Privacy Policy 
+                Privacy Policy
               </Text>
-              
             </TouchableOpacity>
-            <Text className="text-gray-400">
-                .
-              </Text>
-              <TouchableOpacity>
+            <Text className="text-gray-400">.</Text>
+            <TouchableOpacity>
               <Text className="text-sm text-blue underline">
-               Terms of service
+                Terms of service
               </Text>
-              
             </TouchableOpacity>
-            <Text className="text-gray-400">
-                .
-              </Text>
-             <TouchableOpacity>
-              <Text className="text-sm text-blue underline">
-              FAQ's
-              </Text>
-              
+            <Text className="text-gray-400">.</Text>
+            <TouchableOpacity>
+              <Text className="text-sm text-blue underline">FAQ's</Text>
             </TouchableOpacity>
           </View>
         </View>
