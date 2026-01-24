@@ -275,7 +275,7 @@ const SignInScreen = () => {
 
       console.log("Manual Syncing with backend...", userData);
       await api.post("/create-or-update", userData);
-      navigation.replace("Start");
+    
     } catch (error: any) {
       console.error("Backend sync failed:", error.response?.data || error.message);
       Alert.alert("Sync Error", "Server is not responding. Please check your connection.");
@@ -284,7 +284,7 @@ const SignInScreen = () => {
     }
   };
 
-  // --- Normal Email/Password Login ---
+
   const onSubmit = async (data: SignInFormData) => {
     if (!signInLoaded) return;
     try {
@@ -295,8 +295,7 @@ const SignInScreen = () => {
 
       if (result.status === "complete") {
         await setActive({ session: result.createdSessionId });
-        // NOTE: Idhar sync handleBackend logic hum splash screen ya root par rakhte hain 
-        // par aap manually navigation.replace("Start") bhi kar sakte ho.
+       
       }
     } catch (err: any) {
       Alert.alert("Login Failed", err.errors?.[0]?.message || "Invalid credentials");
@@ -327,7 +326,7 @@ const SignInScreen = () => {
     );
   }
 
-  // 2. AGAR USER LOGGED IN HAI: Toh "Continue as..." UI dikhao
+
   if (user) {
     return (
       <View className="flex-1 bg-white items-center justify-center px-6">
@@ -357,7 +356,7 @@ const SignInScreen = () => {
     );
   }
 
-  // 3. AGAR USER LOGGED IN NAHI HAI: Toh Login Form dikhao
+ 
   return (
     <View className="flex-1 bg-white items-center justify-center px-6">
       <Image

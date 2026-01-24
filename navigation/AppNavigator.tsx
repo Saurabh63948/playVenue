@@ -47,6 +47,7 @@ const AppNavigator: React.FC = () => {
         },
       })}
     >
+      
       <Tab.Screen name="Home" component={HomeStackNavigator} />
       <Tab.Screen name="Play" component={PlayStackNavigator} />
       <Tab.Screen name="Book" component={BookStackNavigator} />

@@ -9,8 +9,11 @@ import {
   ScrollView,
   Share,
 } from "react-native";
+import { useAuth } from "@clerk/clerk-expo";
+  
 
 const ProfileScreen = () => {
+  const { signOut } = useAuth();
   return (
     <SafeAreaView className="flex-1 bg-gray-100">
       <ScrollView>
@@ -35,8 +38,8 @@ const ProfileScreen = () => {
             </View>
 
             {/* RIGHT: Edit Button */}
-            <TouchableOpacity className="bg-white/20 p-2 rounded-full">
-              <Edit color="white" size={22} />
+            <TouchableOpacity className="bg-white/20 p-2 rounded-full" onPress={()=>signOut()}>
+              <Edit color="white" size={22}  />
             </TouchableOpacity>
           </View>
         </View>
